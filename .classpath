@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="sounds"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Finalgalaxy/Documents/java_libs/jnativehook-2.1.0.jar" sourcepath="C:/Users/Finalgalaxy/Documents/java_libs/src/jnativehook-2.1.0.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
