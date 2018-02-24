@@ -30,7 +30,7 @@ public class Window extends JFrame{
 		panel_frame.add(textfield_timer);
 		checkbox_disable = new JCheckBox("Disable starting audio");
 		panel_frame.add(checkbox_disable);
-		
+
 		add(panel_frame);
 		setTitle("chrono-tasker v1.0");
 		setResizable(false);

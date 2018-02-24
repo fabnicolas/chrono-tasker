@@ -12,36 +12,36 @@ import org.jnativehook.mouse.NativeMouseInputListener;
 
 public class Core implements NativeMouseInputListener{
 	private Window w;
-  private static ScheduledExecutorService scheduler;
-  private ScheduledFuture<?> scheduled_task;
-  private Runnable task;
-  private AudioManager audio_manager;
-	
+	private static ScheduledExecutorService scheduler;
+	private ScheduledFuture<?> scheduled_task;
+	private Runnable task;
+	private AudioManager audio_manager;
+
 	public Core() {
 		scheduler = Executors.newScheduledThreadPool(1);
 		w = new Window();
 		w.showWindow();
-		
+
 		try{
 			audio_manager = new AudioManager(!(System.getenv("eclipse_dev_notinjar")!=null), true);
 		}catch(CacheException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// Let's cache the task in memory
 		task = new Runnable() {
-      @Override  public void run(){
-      	// At moment no task
-      	try{
+			@Override  public void run(){
+				// At moment no task
+				try{
 					audio_manager.playback("deactivate.wav");
 				}catch(CacheException e){
 					e.printStackTrace();
 				}
-      }
-    };
-    scheduled_task=null;
-    
+			}
+		};
+		scheduled_task=null;
+
 		setMouseHook();
 	}
 
@@ -51,19 +51,19 @@ public class Core implements NativeMouseInputListener{
 			Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
 			logger.setLevel(Level.OFF);
 			logger.setUseParentHandlers(false);
-			
+
 			// Register JNativeHook
 			GlobalScreen.registerNativeHook();
 			GlobalScreen.addNativeMouseListener(this);
 			GlobalScreen.addNativeMouseMotionListener(this);
-			
+
 			System.out.println("JNativeHook: hooked correctly.\n");
 		}catch(NativeHookException ex){
 			System.out.println("There was a problem registering the native hook.");
 			System.out.println(ex.getMessage());
 		}
 	}
-	
+
 	private void startTaskAfterSeconds(int seconds) {
 		try{
 			if(!w.checkbox_disable.isSelected()) audio_manager.playback("activate.wav");
@@ -86,7 +86,7 @@ public class Core implements NativeMouseInputListener{
 			}
 			startTaskAfterSeconds(seconds);
 		}
-		
+
 	}
 
 	// Unimplemented methods.
